@@ -2,7 +2,7 @@ import userData from "../fixtures/user-data.json"
 
 describe('Orange HRM Tests', () => {
   const selectorsList={
-    urlTarget:'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login', 
+    urlTarget:'/auth/login', 
     usernameField:'[name="username"]',
     passwordField:'[name="password"]',
     loginButton:'.oxd-button',
