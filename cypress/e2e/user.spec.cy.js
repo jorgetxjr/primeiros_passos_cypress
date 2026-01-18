@@ -1,34 +1,22 @@
 import userData from "../fixtures/user-data.json"
+import LoginPage from "../pages/loginpage"
+import DashboardPage from "../pages/dashboardPage"
+import MenuPage from "../pages/menuPage"
+
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
+const menu = new MenuPage()
 
 describe('Orange HRM Tests', () => {
-  const selectorsList={
-    urlTarget:'/auth/login', 
-    usernameField:'[name="username"]',
-    passwordField:'[name="password"]',
-    loginButton:'.oxd-button',
-    sectionTitleTopBar: '.oxd-topbar-header-breadcrumb > .oxd-text',
-    dashboadGrid: ".orangehrm-dashboard-grid",
-    credentialWrong:'.oxd-alert-content > .oxd-text',
-    myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
-    firstNameField: '[name="firstName"]',
-    middleNameField:'[name="middleName"]',
-    lastNameField: '[name="lastName"]',
-    employeeIDField: ':nth-child(3) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input',
-    driverLicenseField:':nth-child(3) > :nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input',
-    dateplaceField:'[placeholder="yyyy-mm-dd"]',
-    dateCloseButton:".--close",//surgiu magicamente durante a aula, eu não consegui repetir
-    saveButton:'[type="submit"]'
-  }
+ 
+  it.only("Login with Page Objects",()=>{
+    loginPage.accessLoginPage()
+    loginPage.loginWithAnyUser(userData.validUser,userData.validPassword)
+    dashboardPage.checkLocation("/web/index.php/dashboard/index")
+    menu.clickingMyInfo()
 
-  it.only('User info update - sucess', () => {
-    cy.visit(selectorsList.urlTarget)
-    cy.get(selectorsList.usernameField).type(userData.validUser)
-    cy.get(selectorsList.passwordField).type(userData.validPassword)
-    cy.get(selectorsList.loginButton).click()
-    cy.location("pathname").should("equal","/web/index.php/dashboard/index")
-    cy.get(selectorsList.dashboadGrid)
-    // going to my info
-    cy.get(selectorsList.myInfoButton).click()
+  })
+  it('User info update - sucess', () => {
     //filling the fields
     cy.get(selectorsList.firstNameField).clear()
     cy.get(selectorsList.firstNameField).type("João")
@@ -52,4 +40,28 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.loginButton).click()
     cy.get(selectorsList.credentialWrong)
   })
+  // it.only('Challenge Menu dropdown',()=>{
+    // cy.visit(selectorsList.urlTarget)
+    // cy.get(selectorsList.usernameField).type(userData.validUser)
+    // cy.get(selectorsList.passwordField).type(userData.validPassword)
+    // cy.get(selectorsList.loginButton).click()
+    // cy.location("pathname").should("equal","/web/index.php/dashboard/index")
+    // cy.get(selectorsList.dashboadGrid)
+    // // going to my info
+    // cy.get(selectorsList.myInfoButton).click()
+    // cy.get(selectorsList.nationalityMenu).click()
+    // for(let i=1;i<196;i++)
+    // {
+    //   let nation=selectorsList.nationItem+"("+i+")"
+    //   if(cy.get(nation).text=="Brazilian")
+    //   {
+    //     cy.get(nation).click()
+    //     break
+    //   }
+    // }
+    // cy.get(selectorsList.nationItem+"(27)").click()
+    
+
+  // })
+
 })
