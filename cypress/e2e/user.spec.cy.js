@@ -8,6 +8,8 @@ const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menu = new MenuPage()
 const myInfoPage = new MyInfoPage()
+const Chance = require('chance')
+const chance = new Chance()
 
 describe('Orange HRM Tests', () => {
  
@@ -19,16 +21,10 @@ describe('Orange HRM Tests', () => {
 
     menu.clickingMyInfo()
 
-    myInfoPage.fillName("João","da Silva")
+    myInfoPage.fillName(chance.first(),chance.last({nationality:it}))
     myInfoPage.fillDocuments("1020","101112","2025-28-01")
     myInfoPage.fillPersonalInfo(27)
     myInfoPage.saveForm()
-  })
-
-  it.only('Login - Fail',()=>{//corrija este teste
-    loginPage.accessLoginPage()
-    loginPage.loginWithAnyUser(userData.invalidUser,userData.invalidPassword)
-    loginPage.wrongUserAndPassword()
   })
  
 })
