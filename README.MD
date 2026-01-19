@@ -1,11 +1,6 @@
 # My Cypress automation
-<p align="center">
-  <a href="#-português">Português</a> 
-  <a href="#-english">English</a>
-</p>
 
----
-## BR Português
+## :brazil: Português
 Este é um projeto de estudo de automação de testes, usando a ferramenta Cypress e Javascript. Este conteúdo foi desenvolvido baseado no conteúdo de aula da *LumeStack* - Guardião da Qualidade.
 
 ## Instalação
@@ -25,7 +20,7 @@ npx cypress open
 # Usando somente a linha de comando
 npx cypress run
 ```
-## US English
+## :🇺🇸: English
 This is a test automation study project using Cypress and JavaScript. The content was developed based on classes from *LumeStack* - Guardião da Qualidade.
 
 Installation
